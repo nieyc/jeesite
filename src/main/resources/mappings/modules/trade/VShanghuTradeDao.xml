@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkgem.jeesite.modules.trade.dao.VShanghuTradeDao">
+    
+	<sql id="vShanghuTradeColumns">
+		a.create_time AS "createTime",
+		a.shanghu AS "shanghu",
+		a.deal_type AS "dealType",
+		a.ext_order_no AS "extOrderNo",
+		a.cash_amount AS "cashAmount",
+		a.pay_way AS "payWay",
+		a.score_type AS "scoreType",
+		a.real_name AS "realName",
+		a.user_mobile AS "userMobile"
+	</sql>
+	
+	<sql id="vShanghuTradeJoins">
+	</sql>
+    
+	<select id="get" resultType="VShanghuTrade">
+		SELECT 
+			<include refid="vShanghuTradeColumns"/>
+		FROM v_shanghu_trade a
+		<include refid="vShanghuTradeJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	
+	<select id="getCount" resultType="int">
+		SELECT count(*) 
+		FROM v_shanghu_trade
+	</select>
+	
+	<select id="findList" resultType="VShanghuTrade">
+		SELECT 
+			<include refid="vShanghuTradeColumns"/>
+		FROM v_shanghu_trade a
+		<include refid="vShanghuTradeJoins"/>
+		<where>
+			
+			<if test="realName != null and realName != ''">
+				AND a.real_name = #{realName}
+			</if>
+			<if test="userMobile != null and userMobile != ''">
+				AND a.user_mobile = #{userMobile}
+			</if>
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="VShanghuTrade">
+		SELECT 
+			<include refid="vShanghuTradeColumns"/>
+		FROM v_shanghu_trade a
+		<include refid="vShanghuTradeJoins"/>
+		<where>
+			
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO v_shanghu_trade(
+			create_time,
+			shanghu,
+			deal_type,
+			ext_order_no,
+			cash_amount,
+			pay_way,
+			score_type,
+			real_name,
+			user_mobile
+		) VALUES (
+			#{createTime},
+			#{shanghu},
+			#{dealType},
+			#{extOrderNo},
+			#{cashAmount},
+			#{payWay},
+			#{scoreType},
+			#{realName},
+			#{userMobile}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE v_shanghu_trade SET 	
+			create_time = #{createTime},
+			shanghu = #{shanghu},
+			deal_type = #{dealType},
+			ext_order_no = #{extOrderNo},
+			cash_amount = #{cashAmount},
+			pay_way = #{payWay},
+			score_type = #{scoreType},
+			real_name = #{realName},
+			user_mobile = #{userMobile}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		DELETE FROM v_shanghu_trade
+		WHERE id = #{id}
+	</update>
+	
+</mapper>
