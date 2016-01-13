@@ -15,6 +15,25 @@ import com.thinkgem.jeesite.modules.trade.entity.VShanghuTrade;
 @MyBatisDao
 public interface VShanghuTradeDao extends CrudDao<VShanghuTrade> {
 	
+	/**
+	 * 
+	 * @author nyc
+	 * @date 2016年1月13日 上午10:08:06
+	 * @return 
+	 * @since 0.1
+	 * @see
+	 */
 	public int getCount();
+	
+	/**
+	 * 根据手机号码查询总数，测试用
+	 * @author nyc
+	 * @date 2016年1月13日 下午3:34:17
+	 * @param vShanghuTrade
+	 * @return 
+	 * @since 0.1
+	 * @see
+	 */
+	public int getCountByMobile(VShanghuTrade vShanghuTrade);
 	
 }

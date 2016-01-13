@@ -5,6 +5,7 @@ package com.thinkgem.jeesite.modules.trade.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,6 +22,10 @@ import com.thinkgem.jeesite.modules.trade.dao.VShanghuTradeDao;
 @Service
 @Transactional(readOnly = true)
 public class VShanghuTradeService extends CrudService<VShanghuTradeDao, VShanghuTrade> {
+	
+	
+	@Autowired
+	private VShanghuTradeDao vShanghuTradeDao;
 
 	public VShanghuTrade get(String id) {
 		return super.get(id);
@@ -42,6 +47,13 @@ public class VShanghuTradeService extends CrudService<VShanghuTradeDao, VShanghu
 	@Transactional(readOnly = false)
 	public void delete(VShanghuTrade vShanghuTrade) {
 		super.delete(vShanghuTrade);
+	}
+	public int getCount(){
+		return vShanghuTradeDao.getCount();
+	}
+	
+	public int getCountByMobile(VShanghuTrade vShanghuTrade){
+		return vShanghuTradeDao.getCountByMobile(vShanghuTrade);
 	}
 	
 }

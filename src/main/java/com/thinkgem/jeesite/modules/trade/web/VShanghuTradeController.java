@@ -53,6 +53,12 @@ public class VShanghuTradeController extends BaseController {
 		model.addAttribute("page", page);
 		System.out.println("============>"+vShanghuTrade);
 		request.setAttribute("vShanghuTrade", vShanghuTrade);
+	/*    int i=	vShanghuTradeService.getCount();
+	    System.out.println("i ===fsfsf=====>"+i);
+	    VShanghuTrade vShanghuTrade1=new VShanghuTrade();
+	    vShanghuTrade1.setUserMobile("13341830268");
+	    int j=	vShanghuTradeService.getCountByMobile(vShanghuTrade1);
+	    System.out.println("j========>"+j);*/
 		return "modules/trade/vShanghuTradeList";
 	}
 

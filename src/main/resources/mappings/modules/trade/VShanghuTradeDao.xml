@@ -31,6 +31,11 @@
 		FROM v_shanghu_trade
 	</select>
 	
+	<select id="getCountByMobile"  resultType="int">
+		SELECT count(*) 
+		FROM v_shanghu_trade where user_mobile=#{userMobile}
+	</select>
+	
 	<select id="findList" resultType="VShanghuTrade">
 		SELECT 
 			<include refid="vShanghuTradeColumns"/>
