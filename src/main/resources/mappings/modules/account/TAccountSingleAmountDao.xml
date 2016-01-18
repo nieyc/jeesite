@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkgem.jeesite.modules.account.dao.TAccountSingleAmountDao">
+    
+	<sql id="tAccountSingleAmountColumns">
+		a.id AS "id",
+		a.trade_date AS "tradeDate",
+		a.in_amount AS "inAmount",
+		a.in_deal_amount AS "inDealAmount",
+		a.out_amount AS "outAmount",
+		a.out_deal_amount AS "outDealAmount",
+		a.begining_amount AS "beginingAmount",
+		a.ending_amount AS "endingAmount",
+		a.alipay_amount AS "alipayAmount",
+		a.alipay_deal_amount AS "alipayDealAmount",
+		a.wechat_amount AS "wechatAmount",
+		a.wechat_deal_amount AS "wechatDealAmount",
+		a.panchan_amount AS "panchanAmount",
+		a.panchan_deal_amount AS "panchanDealAmount",
+		a.cmcc_amount AS "cmccAmount",
+		a.cmcc_deal_amount AS "cmccDealAmount",
+		a.tickets_amount AS "ticketsAmount",
+		a.tickets_deal_amount AS "ticketsDealAmount",
+		a.refund_amount AS "refundAmount",
+		a.refund_deal_amount AS "refundDealAmount",
+		a.create_time AS "createTime",
+		a.amount_type AS "amountType",
+		a.shanghu_code AS "shanghuCode",
+		a.shanghu_name AS "shanghuName"
+	</sql>
+	
+	<sql id="tAccountSingleAmountJoins">
+	</sql>
+    
+	<select id="get" resultType="TAccountSingleAmount">
+		SELECT 
+			<include refid="tAccountSingleAmountColumns"/>
+		FROM t_account_single_amount a
+		<include refid="tAccountSingleAmountJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="TAccountSingleAmount">
+		SELECT 
+			<include refid="tAccountSingleAmountColumns"/>
+		FROM t_account_single_amount a
+		<include refid="tAccountSingleAmountJoins"/>
+		<where>
+			
+			<if test="tradeDate != null and tradeDate != ''">
+				AND a.trade_date = #{tradeDate}
+			</if>
+			<if test="amountType != null and amountType != ''">
+				AND a.amount_type = #{amountType}
+			</if>
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="TAccountSingleAmount">
+		SELECT 
+			<include refid="tAccountSingleAmountColumns"/>
+		FROM t_account_single_amount a
+		<include refid="tAccountSingleAmountJoins"/>
+		<where>
+			
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO t_account_single_amount(
+			id,
+			trade_date,
+			in_amount,
+			in_deal_amount,
+			out_amount,
+			out_deal_amount,
+			begining_amount,
+			ending_amount,
+			alipay_amount,
+			alipay_deal_amount,
+			wechat_amount,
+			wechat_deal_amount,
+			panchan_amount,
+			panchan_deal_amount,
+			cmcc_amount,
+			cmcc_deal_amount,
+			tickets_amount,
+			tickets_deal_amount,
+			refund_amount,
+			refund_deal_amount,
+			create_time,
+			amount_type,
+			shanghu_code,
+			shanghu_name
+		) VALUES (
+			#{id},
+			#{tradeDate},
+			#{inAmount},
+			#{inDealAmount},
+			#{outAmount},
+			#{outDealAmount},
+			#{beginingAmount},
+			#{endingAmount},
+			#{alipayAmount},
+			#{alipayDealAmount},
+			#{wechatAmount},
+			#{wechatDealAmount},
+			#{panchanAmount},
+			#{panchanDealAmount},
+			#{cmccAmount},
+			#{cmccDealAmount},
+			#{ticketsAmount},
+			#{ticketsDealAmount},
+			#{refundAmount},
+			#{refundDealAmount},
+			#{createTime},
+			#{amountType},
+			#{shanghuCode},
+			#{shanghuName}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE t_account_single_amount SET 	
+			trade_date = #{tradeDate},
+			in_amount = #{inAmount},
+			in_deal_amount = #{inDealAmount},
+			out_amount = #{outAmount},
+			out_deal_amount = #{outDealAmount},
+			begining_amount = #{beginingAmount},
+			ending_amount = #{endingAmount},
+			alipay_amount = #{alipayAmount},
+			alipay_deal_amount = #{alipayDealAmount},
+			wechat_amount = #{wechatAmount},
+			wechat_deal_amount = #{wechatDealAmount},
+			panchan_amount = #{panchanAmount},
+			panchan_deal_amount = #{panchanDealAmount},
+			cmcc_amount = #{cmccAmount},
+			cmcc_deal_amount = #{cmccDealAmount},
+			tickets_amount = #{ticketsAmount},
+			tickets_deal_amount = #{ticketsDealAmount},
+			refund_amount = #{refundAmount},
+			refund_deal_amount = #{refundDealAmount},
+			create_time = #{createTime},
+			amount_type = #{amountType},
+			shanghu_code = #{shanghuCode},
+			shanghu_name = #{shanghuName}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		DELETE FROM t_account_single_amount
+		WHERE id = #{id}
+	</update>
+	
+</mapper>

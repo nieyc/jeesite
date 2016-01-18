@@ -36,6 +36,7 @@ public class VShanghuTradeService extends CrudService<VShanghuTradeDao, VShanghu
 	}
 	
 	public Page<VShanghuTrade> findPage(Page<VShanghuTrade> page, VShanghuTrade vShanghuTrade) {
+		page.setOrderBy("create_time desc");
 		return super.findPage(page, vShanghuTrade);
 	}
 	
