@@ -3,6 +3,8 @@
  */
 package com.thinkgem.jeesite.modules.trade.dao;
 
+import java.util.List;
+
 import com.thinkgem.jeesite.common.persistence.CrudDao;
 import com.thinkgem.jeesite.common.persistence.annotation.MyBatisDao;
 import com.thinkgem.jeesite.modules.trade.entity.VShanghuTrade;
@@ -35,5 +37,7 @@ public interface VShanghuTradeDao extends CrudDao<VShanghuTrade> {
 	 * @see
 	 */
 	public int getCountByMobile(VShanghuTrade vShanghuTrade);
+	
+	public List<VShanghuTrade> getVShanghuTradeList(VShanghuTrade vShanghuTrade);
 	
 }

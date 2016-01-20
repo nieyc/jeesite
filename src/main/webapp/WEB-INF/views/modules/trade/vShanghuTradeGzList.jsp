@@ -21,7 +21,7 @@
 		<li class="active"><a href="${ctx}/trade/vShanghuTrade/">商户流水列表</a></li>
 <%-- 		<shiro:hasPermission name="trade:vShanghuTrade:edit"><li><a href="${ctx}/trade/vShanghuTrade/form">商户流水添加</a></li></shiro:hasPermission>
  --%>	</ul>
-	<form:form id="searchForm" modelAttribute="vShanghuTrade" action="${ctx}/trade/vShanghuTrade/list" method="post" class="breadcrumb form-search">
+	<form:form id="searchForm" modelAttribute="vShanghuTrade" action="${ctx}/trade/vShanghuTrade/gzlist" method="post" class="breadcrumb form-search">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
 		<ul class="ul-form">

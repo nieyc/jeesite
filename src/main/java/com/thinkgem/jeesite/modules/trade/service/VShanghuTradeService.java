@@ -57,4 +57,10 @@ public class VShanghuTradeService extends CrudService<VShanghuTradeDao, VShanghu
 		return vShanghuTradeDao.getCountByMobile(vShanghuTrade);
 	}
 	
+	
+	public List<VShanghuTrade> findPage1(Page<VShanghuTrade> page, VShanghuTrade vShanghuTrade) {
+		page.setOrderBy("create_time desc");
+		return vShanghuTradeDao.getVShanghuTradeList(vShanghuTrade);
+	}
+	
 }

@@ -4,11 +4,15 @@
 package com.thinkgem.jeesite.modules.trade.entity;
 
 import java.util.Date;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
+
 import org.hibernate.validator.constraints.Length;
+
 import javax.validation.constraints.NotNull;
 
 import com.thinkgem.jeesite.common.persistence.DataEntity;
+import com.thinkgem.jeesite.common.utils.excel.annotation.ExcelField;
 
 /**
  * 商户流水Entity
@@ -20,11 +24,11 @@ public class VShanghuTrade extends DataEntity<VShanghuTrade> {
 	private static final long serialVersionUID = 1L;
 	private Date createTime;		// create_time
 	private String shanghu;		// shanghu
-	private Long dealType;		// deal_type
+	private String dealType;		// deal_type
 	private String extOrderNo;		// ext_order_no
 	private String cashAmount;		// cash_amount
-	private Long payWay;		// pay_way
-	private Long scoreType;		// score_type
+	private String payWay;		// pay_way
+	private String scoreType;		// score_type
 	private String realName;		// real_name
 	private String userMobile;		// user_mobile
 	
@@ -37,6 +41,7 @@ public class VShanghuTrade extends DataEntity<VShanghuTrade> {
 	}
 
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	@ExcelField(title="交易时间", type=1, align=2, sort=1)
 	public Date getCreateTime() {
 		return createTime;
 	}
@@ -46,6 +51,7 @@ public class VShanghuTrade extends DataEntity<VShanghuTrade> {
 	}
 	
 	@Length(min=0, max=2, message="shanghu长度必须介于 0 和 2 之间")
+	@ExcelField(title="账户名", align=2, sort=10)
 	public String getShanghu() {
 		return shanghu;
 	}
@@ -55,15 +61,17 @@ public class VShanghuTrade extends DataEntity<VShanghuTrade> {
 	}
 	
 	@NotNull(message="deal_type不能为空")
-	public Long getDealType() {
+	@ExcelField(title="账户类型", align=2, sort=20)
+	public String getDealType() {
 		return dealType;
 	}
 
-	public void setDealType(Long dealType) {
+	public void setDealType(String dealType) {
 		this.dealType = dealType;
 	}
 	
 	@Length(min=0, max=100, message="ext_order_no长度必须介于 0 和 100 之间")
+	@ExcelField(title="订单编号", align=2, sort=30)
 	public String getExtOrderNo() {
 		return extOrderNo;
 	}
@@ -79,24 +87,25 @@ public class VShanghuTrade extends DataEntity<VShanghuTrade> {
 	public void setCashAmount(String cashAmount) {
 		this.cashAmount = cashAmount;
 	}
-	
-	public Long getPayWay() {
+	@ExcelField(title="支付通道", align=2, sort=40)
+	public String getPayWay() {
 		return payWay;
 	}
 
-	public void setPayWay(Long payWay) {
+	public void setPayWay(String payWay) {
 		this.payWay = payWay;
 	}
-	
-	public Long getScoreType() {
+	@ExcelField(title="交易类型", align=2, sort=50)
+	public String getScoreType() {
 		return scoreType;
 	}
 
-	public void setScoreType(Long scoreType) {
+	public void setScoreType(String scoreType) {
 		this.scoreType = scoreType;
 	}
 	
 	@Length(min=0, max=100, message="real_name长度必须介于 0 和 100 之间")
+	@ExcelField(title="客户姓名", align=2, sort=60)
 	public String getRealName() {
 		return realName;
 	}
@@ -106,6 +115,7 @@ public class VShanghuTrade extends DataEntity<VShanghuTrade> {
 	}
 	
 	@Length(min=0, max=30, message="user_mobile长度必须介于 0 和 30 之间")
+	@ExcelField(title="客户手机号", align=2, sort=70)
 	public String getUserMobile() {
 		return userMobile;
 	}

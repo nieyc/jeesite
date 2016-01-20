@@ -40,6 +40,26 @@
 		WHERE a.id = #{id}
 	</select>
 	
+	
+	<select id="getTAccountSingleAmountList" resultType="TAccountSingleAmount">
+	    SELECT 
+			<include refid="tAccountSingleAmountColumns"/>
+		FROM t_account_single_amount a
+		<include refid="tAccountSingleAmountJoins"/>
+		<where>
+			
+			<if test="tradeDate != null and tradeDate != ''">
+				AND date_format(a.TRADE_DATE,'%Y-%m')  = date_format(#{tradeDate},'%Y-%m')
+			</if>
+			<if test="amountType != null and amountType != ''">
+				AND a.amount_type = #{amountType}
+			</if>
+			<if test="shanghuCode != null and shanghuCode != ''">
+				AND a.shanghu_code = #{shanghuCode}
+			</if>
+		</where>
+	    ORDER BY a.TRADE_DATE desc
+	</select>
 	<select id="findList" resultType="TAccountSingleAmount">
 		SELECT 
 			<include refid="tAccountSingleAmountColumns"/>
@@ -53,6 +73,10 @@
 			<if test="amountType != null and amountType != ''">
 				AND a.amount_type = #{amountType}
 			</if>
+			<if test="shanghuCode != null and shanghuCode != ''">
+				AND a.shanghu_code = #{shanghuCode}
+			</if>
+			
 		</where>
 		<choose>
 			<when test="page !=null and page.orderBy != null and page.orderBy != ''">

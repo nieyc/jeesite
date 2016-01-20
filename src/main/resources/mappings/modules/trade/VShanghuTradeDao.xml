@@ -31,6 +31,26 @@
 		FROM v_shanghu_trade
 	</select>
 	
+	<select id="getVShanghuTradeList" resultType="VShanghuTrade">
+		SELECT a.CREATE_TIME,case a.SHANGHU when '01' then '广州地铁' when '00' then '长沙地铁' END  as SHANGHU ,a.CREATE_TIME ,
+case a.DEAL_TYPE when '1' then '交易' when '2' then '退款' when '3' then '出票' END as DEAL_TYPE,a.EXT_ORDER_NO,
+case a.PAY_WAY when '1037' then '盘缠支付' when '0' then '支付宝支付' when '1' then '中移动支付' when '2' then '支付宝扫码' when '3' then '微信支付' when '4' then '微信扫码'
+end as PAY_WAY,
+a.REAL_NAME,a.USER_MOBILE,case a.SCORE_TYPE  when '0' then 'APP' when '1' then '扫描' END as SCORE_TYPE  FROM v_shanghu_trade a
+		<include refid="vShanghuTradeJoins"/>
+		<where>
+			<if test="shanghu != null and shanghu != ''">
+				AND a.shanghu = #{shanghu}
+			</if>
+			<if test="createTime != null and createTime != ''">
+				AND date_format(a.create_time,'%Y-%m-%d') =  str_to_date(#{createTime}, '%Y-%m-%d')
+			</if>
+			
+		</where>
+		ORDER BY create_time desc
+	</select>
+	
+	
 	<select id="getCountByMobile"  resultType="int">
 		SELECT count(*) 
 		FROM v_shanghu_trade where user_mobile=#{userMobile}
@@ -49,6 +69,13 @@
 			<if test="userMobile != null and userMobile != ''">
 				AND a.user_mobile = #{userMobile}
 			</if>
+			<if test="shanghu != null and shanghu != ''">
+				AND a.shanghu = #{shanghu}
+			</if>
+			<if test="createTime != null and createTime != ''">
+				AND date_format(a.create_time,'%Y-%m-%d') =  str_to_date(#{createTime}, '%Y-%m-%d')
+			</if>
+			
 		</where>
 		<choose>
 			<when test="page !=null and page.orderBy != null and page.orderBy != ''">

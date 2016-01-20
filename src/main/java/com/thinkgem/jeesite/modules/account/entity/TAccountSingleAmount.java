@@ -4,10 +4,13 @@
 package com.thinkgem.jeesite.modules.account.entity;
 
 import java.util.Date;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
+
 import org.hibernate.validator.constraints.Length;
 
 import com.thinkgem.jeesite.common.persistence.DataEntity;
+import com.thinkgem.jeesite.common.utils.excel.annotation.ExcelField;
 
 /**
  * 预售票账务汇总Entity
@@ -50,6 +53,7 @@ public class TAccountSingleAmount extends DataEntity<TAccountSingleAmount> {
 	}
 
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	@ExcelField(title="日期", type=1, align=2, sort=1)
 	public Date getTradeDate() {
 		return tradeDate;
 	}
@@ -57,7 +61,7 @@ public class TAccountSingleAmount extends DataEntity<TAccountSingleAmount> {
 	public void setTradeDate(Date tradeDate) {
 		this.tradeDate = tradeDate;
 	}
-	
+	@ExcelField(title="收入总计", align=2, sort=70)
 	public String getInAmount() {
 		return inAmount;
 	}
@@ -67,6 +71,7 @@ public class TAccountSingleAmount extends DataEntity<TAccountSingleAmount> {
 	}
 	
 	@Length(min=0, max=12, message="进账总笔数长度必须介于 0 和 12 之间")
+	/*@ExcelField(title="进账笔数", align=2, sort=30)*/
 	public String getInDealAmount() {
 		return inDealAmount;
 	}
@@ -74,7 +79,7 @@ public class TAccountSingleAmount extends DataEntity<TAccountSingleAmount> {
 	public void setInDealAmount(String inDealAmount) {
 		this.inDealAmount = inDealAmount;
 	}
-	
+	@ExcelField(title="支出总计", align=2, sort=100)
 	public String getOutAmount() {
 		return outAmount;
 	}
@@ -84,6 +89,7 @@ public class TAccountSingleAmount extends DataEntity<TAccountSingleAmount> {
 	}
 	
 	@Length(min=0, max=12, message="支出总笔数长度必须介于 0 和 12 之间")
+	/*@ExcelField(title="支出总笔数", align=2, sort=50)*/
 	public String getOutDealAmount() {
 		return outDealAmount;
 	}
@@ -91,7 +97,7 @@ public class TAccountSingleAmount extends DataEntity<TAccountSingleAmount> {
 	public void setOutDealAmount(String outDealAmount) {
 		this.outDealAmount = outDealAmount;
 	}
-	
+	@ExcelField(title="期初余额", align=2, sort=20)
 	public String getBeginingAmount() {
 		return beginingAmount;
 	}
@@ -99,7 +105,7 @@ public class TAccountSingleAmount extends DataEntity<TAccountSingleAmount> {
 	public void setBeginingAmount(String beginingAmount) {
 		this.beginingAmount = beginingAmount;
 	}
-	
+	@ExcelField(title="期末余额", align=2, sort=110)
 	public String getEndingAmount() {
 		return endingAmount;
 	}
@@ -107,7 +113,7 @@ public class TAccountSingleAmount extends DataEntity<TAccountSingleAmount> {
 	public void setEndingAmount(String endingAmount) {
 		this.endingAmount = endingAmount;
 	}
-	
+	@ExcelField(title="支付宝总额", align=2, sort=30)
 	public String getAlipayAmount() {
 		return alipayAmount;
 	}
@@ -117,6 +123,7 @@ public class TAccountSingleAmount extends DataEntity<TAccountSingleAmount> {
 	}
 	
 	@Length(min=0, max=12, message="支付宝总笔数长度必须介于 0 和 12 之间")
+	/*@ExcelField(title="支付宝总笔数", align=2, sort=90)*/
 	public String getAlipayDealAmount() {
 		return alipayDealAmount;
 	}
@@ -124,7 +131,7 @@ public class TAccountSingleAmount extends DataEntity<TAccountSingleAmount> {
 	public void setAlipayDealAmount(String alipayDealAmount) {
 		this.alipayDealAmount = alipayDealAmount;
 	}
-	
+	@ExcelField(title="微信总额", align=2, sort=40)
 	public String getWechatAmount() {
 		return wechatAmount;
 	}
@@ -134,6 +141,7 @@ public class TAccountSingleAmount extends DataEntity<TAccountSingleAmount> {
 	}
 	
 	@Length(min=0, max=12, message="微信总笔数长度必须介于 0 和 12 之间")
+	/*@ExcelField(title="微信总笔数", align=2, sort=110)*/
 	public String getWechatDealAmount() {
 		return wechatDealAmount;
 	}
@@ -141,7 +149,7 @@ public class TAccountSingleAmount extends DataEntity<TAccountSingleAmount> {
 	public void setWechatDealAmount(String wechatDealAmount) {
 		this.wechatDealAmount = wechatDealAmount;
 	}
-	
+	@ExcelField(title="盘缠总额", align=2, sort=50)
 	public String getPanchanAmount() {
 		return panchanAmount;
 	}
@@ -151,6 +159,7 @@ public class TAccountSingleAmount extends DataEntity<TAccountSingleAmount> {
 	}
 	
 	@Length(min=0, max=12, message="盘缠总笔数长度必须介于 0 和 12 之间")
+/*	@ExcelField(title="盘缠总笔数", align=2, sort=130)*/
 	public String getPanchanDealAmount() {
 		return panchanDealAmount;
 	}
@@ -158,7 +167,7 @@ public class TAccountSingleAmount extends DataEntity<TAccountSingleAmount> {
 	public void setPanchanDealAmount(String panchanDealAmount) {
 		this.panchanDealAmount = panchanDealAmount;
 	}
-	
+	@ExcelField(title="中移动总额", align=2, sort=60)
 	public String getCmccAmount() {
 		return cmccAmount;
 	}
@@ -168,6 +177,7 @@ public class TAccountSingleAmount extends DataEntity<TAccountSingleAmount> {
 	}
 	
 	@Length(min=0, max=12, message="中移动总笔数长度必须介于 0 和 12 之间")
+/*	@ExcelField(title="中移动总笔数", align=2, sort=150)*/
 	public String getCmccDealAmount() {
 		return cmccDealAmount;
 	}
@@ -175,7 +185,7 @@ public class TAccountSingleAmount extends DataEntity<TAccountSingleAmount> {
 	public void setCmccDealAmount(String cmccDealAmount) {
 		this.cmccDealAmount = cmccDealAmount;
 	}
-	
+	@ExcelField(title="出票", align=2, sort=80)
 	public String getTicketsAmount() {
 		return ticketsAmount;
 	}
@@ -185,6 +195,7 @@ public class TAccountSingleAmount extends DataEntity<TAccountSingleAmount> {
 	}
 	
 	@Length(min=0, max=12, message="出票总笔数长度必须介于 0 和 12 之间")
+	/*@ExcelField(title="出票总笔数", align=2, sort=170)*/
 	public String getTicketsDealAmount() {
 		return ticketsDealAmount;
 	}
@@ -192,7 +203,7 @@ public class TAccountSingleAmount extends DataEntity<TAccountSingleAmount> {
 	public void setTicketsDealAmount(String ticketsDealAmount) {
 		this.ticketsDealAmount = ticketsDealAmount;
 	}
-	
+	@ExcelField(title="退票", align=2, sort=90)
 	public String getRefundAmount() {
 		return refundAmount;
 	}
@@ -202,6 +213,7 @@ public class TAccountSingleAmount extends DataEntity<TAccountSingleAmount> {
 	}
 	
 	@Length(min=0, max=12, message="退款总笔数长度必须介于 0 和 12 之间")
+	/*@ExcelField(title="退款总笔数", align=2, sort=190)*/
 	public String getRefundDealAmount() {
 		return refundDealAmount;
 	}
@@ -238,7 +250,13 @@ public class TAccountSingleAmount extends DataEntity<TAccountSingleAmount> {
 	}
 	
 	@Length(min=0, max=200, message="商户名称长度必须介于 0 和 200 之间")
+	@ExcelField(title="账户名", align=2, sort=10)
 	public String getShanghuName() {
+		if(shanghuName.equals("4401")){
+			shanghuName="广州地铁";
+		}else if(shanghuName.equals("4100")){
+			shanghuName="长沙地铁";
+		}
 		return shanghuName;
 	}
 
