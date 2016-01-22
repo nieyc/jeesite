@@ -31,7 +31,53 @@ public class VShanghuTrade extends DataEntity<VShanghuTrade> {
 	private String scoreType;		// score_type
 	private String realName;		// real_name
 	private String userMobile;		// user_mobile
+	private String product;
+	private Date beginCreateTime;		// 开始 create_time
+	private Date endCreateTime;		// 结束 create_time
 	
+	/**
+	 * @return beginCreateTime
+	 */
+	public Date getBeginCreateTime() {
+		return beginCreateTime;
+	}
+
+	/**
+	 * @param beginCreateTime
+	 */
+	public void setBeginCreateTime(Date beginCreateTime) {
+		this.beginCreateTime = beginCreateTime;
+	}
+
+	/**
+	 * @return endCreateTime
+	 */
+	public Date getEndCreateTime() {
+		return endCreateTime;
+	}
+
+	/**
+	 * @param endCreateTime
+	 */
+	public void setEndCreateTime(Date endCreateTime) {
+		this.endCreateTime = endCreateTime;
+	}
+
+	/**
+	 * @return product
+	 */
+	@ExcelField(title="商品",  align=2, sort=40)
+	public String getProduct() {
+		return product;
+	}
+
+	/**
+	 * @param product
+	 */
+	public void setProduct(String product) {
+		this.product = product;
+	}
+
 	public VShanghuTrade() {
 		super();
 	}
@@ -79,7 +125,7 @@ public class VShanghuTrade extends DataEntity<VShanghuTrade> {
 	public void setExtOrderNo(String extOrderNo) {
 		this.extOrderNo = extOrderNo;
 	}
-	
+	@ExcelField(title="交易金额（元）", align=2, sort=50)
 	public String getCashAmount() {
 		return cashAmount;
 	}
@@ -87,7 +133,7 @@ public class VShanghuTrade extends DataEntity<VShanghuTrade> {
 	public void setCashAmount(String cashAmount) {
 		this.cashAmount = cashAmount;
 	}
-	@ExcelField(title="支付通道", align=2, sort=40)
+	@ExcelField(title="支付通道", align=2, sort=60)
 	public String getPayWay() {
 		return payWay;
 	}
@@ -95,7 +141,7 @@ public class VShanghuTrade extends DataEntity<VShanghuTrade> {
 	public void setPayWay(String payWay) {
 		this.payWay = payWay;
 	}
-	@ExcelField(title="交易类型", align=2, sort=50)
+	@ExcelField(title="交易类型", align=2, sort=70)
 	public String getScoreType() {
 		return scoreType;
 	}
@@ -105,7 +151,7 @@ public class VShanghuTrade extends DataEntity<VShanghuTrade> {
 	}
 	
 	@Length(min=0, max=100, message="real_name长度必须介于 0 和 100 之间")
-	@ExcelField(title="客户姓名", align=2, sort=60)
+	@ExcelField(title="客户姓名", align=2, sort=80)
 	public String getRealName() {
 		return realName;
 	}
@@ -115,7 +161,7 @@ public class VShanghuTrade extends DataEntity<VShanghuTrade> {
 	}
 	
 	@Length(min=0, max=30, message="user_mobile长度必须介于 0 和 30 之间")
-	@ExcelField(title="客户手机号", align=2, sort=70)
+	@ExcelField(title="客户手机号", align=2, sort=90)
 	public String getUserMobile() {
 		return userMobile;
 	}

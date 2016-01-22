@@ -43,6 +43,7 @@ $(document).ready(function(){
 					if(v=="ok"){
 						$("#searchForm").attr("action","${ctx}/account/tAccountSingleAmount/export?ShanghuCode=4100");
 						$("#searchForm").submit();
+						$("#searchForm").attr("action","${ctx}/account/tAccountSingleAmount/getCsDay");
 					}
 				},{buttonsFocus:1});
 				top.$('.jbox-body .jbox-icon').css('top','55px');
@@ -54,6 +55,7 @@ $(document).ready(function(){
 				if(v=="ok"){
 					$("#searchForm").attr("action","${ctx}/trade/vShanghuTrade/exportGzDay?day="+day+"&shanghu=00");
 					$("#searchForm").submit();
+					$("#searchForm").attr("action","${ctx}/account/tAccountSingleAmount/getCsDay");
 				}
 			},{buttonsFocus:1});
 			top.$('.jbox-body .jbox-icon').css('top','55px');
@@ -135,7 +137,7 @@ $(document).ready(function(){
 	  </tr>
 	  <tr>
 	    <td colspan="4" class="td1">地铁充值</td>
-	    <td rowspan="2" class="td2">退款 ${tAccountSingleAmount.refundAmount}    <em>${tAccountSingleAmount.refundDealAmount} </em></td>
+	    <td rowspan="2" class="td2">退款 ${tAccountSingleAmount.refundAmount}    <em>${tAccountSingleAmount.refundDealAmount}笔 </em></td>
 	  </tr>
 	  <tr>
 	    <td>支付宝    <em></em></td>

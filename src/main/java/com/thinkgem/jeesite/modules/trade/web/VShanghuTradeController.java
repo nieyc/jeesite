@@ -88,6 +88,7 @@ public class VShanghuTradeController extends BaseController {
 	@RequestMapping(value = {"gzlist", ""})
 	public String gzlist(VShanghuTrade vShanghuTrade, HttpServletRequest request, HttpServletResponse response, Model model) {
 		vShanghuTrade.setShanghu("01");
+		
 		Page<VShanghuTrade> page = vShanghuTradeService.findPage(new Page<VShanghuTrade>(request, response), vShanghuTrade); 
 		model.addAttribute("page", page);
 		request.setAttribute("vShanghuTrade", vShanghuTrade);
@@ -205,6 +206,46 @@ public class VShanghuTradeController extends BaseController {
 			addMessage(redirectAttributes, "导出闪客蜂业务明细查询汇总！失败信息："+e.getMessage());
 		}
 		return "redirect:" + adminPath +"/account/tAccountSingleAmountGzList?repage";
+    }
+	
+	
+	
+	
+	
+	@RequiresPermissions("trade:vShanghuTrade:view")
+    @RequestMapping(value = "exportDeail", method=RequestMethod.POST)
+    public String exportDeail(VShanghuTrade vShanghuTrade, HttpServletRequest request, HttpServletResponse response, RedirectAttributes redirectAttributes) {
+		try {
+			String shanghu=request.getParameter("shanghu");
+			String beginCreateTime=request.getParameter("beginCreateTime");
+			String endCreateTime=request.getParameter("endCreateTime");
+			String dealType=request.getParameter("dealType");
+			String realName=request.getParameter("realName");
+			String userMobile=request.getParameter("userMobile");
+			String extOrderNo=request.getParameter("extOrderNo");
+            String fileName = "闪客蜂业务明细查询"+DateUtils.getDate("yyyyMMddHHmmss")+".xlsx";
+            vShanghuTrade.setShanghu(shanghu);
+            if(StringUtils.isNotEmpty(beginCreateTime)){
+            	  Date biginDay=sdf.parse(beginCreateTime);
+            	  vShanghuTrade.setBeginCreateTime(biginDay);
+            }
+            if(StringUtils.isNotEmpty(endCreateTime)){
+          	  Date endDay=sdf.parse(endCreateTime);
+          	  vShanghuTrade.setEndCreateTime(endDay);
+             }
+            vShanghuTrade.setDealType(dealType);
+            vShanghuTrade.setRealName(realName);
+            vShanghuTrade.setUserMobile(userMobile);
+            vShanghuTrade.setExtOrderNo(extOrderNo);
+         
+            List<VShanghuTrade> page = vShanghuTradeService.findPage1(new Page<VShanghuTrade>(request, response,-1), vShanghuTrade); 
+    		new ExportExcel("闪客蜂业务明细查询", VShanghuTrade.class).setDataList(page).write(response, fileName).dispose();
+    		return null;
+		} catch (Exception e) {
+			e.printStackTrace();
+			addMessage(redirectAttributes, "导出闪客蜂业务明细查询汇总！失败信息："+e.getMessage());
+		}
+		return "redirect:" + adminPath +"/trade/vShanghuTrade/vShanghuTradeGzList?repage";
     }
 	
 	

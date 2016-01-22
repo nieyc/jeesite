@@ -1,3 +1,4 @@
+<%@page import="java.util.Date"%>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ include file="/WEB-INF/views/include/taglib.jsp"%>
 <html>
@@ -6,32 +7,87 @@
 	<meta name="decorator" content="default"/>
 	<script type="text/javascript">
 		$(document).ready(function() {
-			
+			//$("#searchForm").attr("action","${ctx}/trade/vShanghuTrade/gzlist");
 		});
 		function page(n,s){
+			$("#searchForm").attr("action","${ctx}/trade/vShanghuTrade/gzlist");
 			$("#pageNo").val(n);
 			$("#pageSize").val(s);
 			$("#searchForm").submit();
         	return false;
         }
+		
+		
+		$(document).ready(function() {
+			 $("#btnExport").click(function(){
+				top.$.jBox.confirm("确认要导出交易明细数据吗？","系统提示",function(v,h,f){
+					if(v=="ok"){
+						var beginDate=document.getElementById("beginCreateTime").value;
+						var endDate=document.getElementById("endCreateTime").value;
+						var dealType=document.getElementById("dealType").value;
+						var realName=document.getElementById("realName").value;
+						var userMobile=document.getElementById("userMobile").value;
+						var extOrderNo=document.getElementById("extOrderNo").value;
+						$("#searchForm").attr("action","${ctx}/trade/vShanghuTrade/exportDeail?shanghu=01&beginCreateTime="+beginDate+"&endCreateTime="+endDate+"&dealType="+dealType+"&realName="+realName+"&userMobile="+userMobile+"&extOrderNo="+extOrderNo+"");
+						$("#searchForm").submit();
+						$("#searchForm").attr("action","${ctx}/trade/vShanghuTrade/gzlist");
+					}
+				},{buttonsFocus:1});
+				top.$('.jbox-body .jbox-icon').css('top','55px');
+			}); 
+			
+		});
+		
+
+
 	</script>
 </head>
+
 <body>
 	<ul class="nav nav-tabs">
-		<li class="active"><a href="${ctx}/trade/vShanghuTrade/">商户流水列表</a></li>
+		<li class="active"><a href="${ctx}/trade/vShanghuTrade/gzlist">交易明细查询</a></li>
 <%-- 		<shiro:hasPermission name="trade:vShanghuTrade:edit"><li><a href="${ctx}/trade/vShanghuTrade/form">商户流水添加</a></li></shiro:hasPermission>
  --%>	</ul>
 	<form:form id="searchForm" modelAttribute="vShanghuTrade" action="${ctx}/trade/vShanghuTrade/gzlist" method="post" class="breadcrumb form-search">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
 		<ul class="ul-form">
+		  
+			<li><label>账户类型：</label>
+				<form:select path="dealType" class="input-medium">
+					<form:option value="100" label="请选择"/>
+					<form:options items="${fns:getDictList('account_type')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
+				</form:select>
+			</li>
+			
+		<%-- 	<li><label>商品：</label>
+				<form:select path="shanghu" class="input-medium">
+					<form:option value="100" label="请选择"/>
+					<form:options items="${fns:getDictList('product_type')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
+				</form:select>
+			</li> --%>
+			
 			<li><label>姓名：</label>
-				<form:input path="realName" htmlEscape="false" maxlength="100" class="input-medium"/>
+				<form:input path="realName" id="realName" htmlEscape="false" maxlength="100" class="input-medium"/>
 			</li>
 			<li><label>手机号码：</label>
-				<form:input path="userMobile" htmlEscape="false" maxlength="30" class="input-medium"/>
+				<form:input path="userMobile" id="userMobile" htmlEscape="false" maxlength="30" class="input-medium"/>
 			</li>
-			<li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/></li>
+			<li><label>订单编号：</label>
+				<form:input path="extOrderNo" id="extOrderNo" htmlEscape="false" maxlength="30" class="input-medium"/>
+			</li>
+			
+			 <li><label>时间：</label>
+				<input name="beginCreateTime" id="beginCreateTime" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
+					value="<fmt:formatDate value="${vShanghuTrade.beginCreateTime}" pattern="yyyy-MM-dd"/>"
+					onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/> - 
+				<input name="endCreateTime" id="endCreateTime" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
+					value="<fmt:formatDate value="${vShanghuTrade.endCreateTime}" pattern="yyyy-MM-dd"/>"
+					onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/>
+			</li>
+			
+			<li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/>
+			<input id="btnExport" class="btn btn-primary" type="button" value="导出"/></li>
 			<li class="clearfix"></li>
 		</ul>
 	</form:form>

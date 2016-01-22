@@ -189,8 +189,8 @@ public class TAccountSingleAmountController extends BaseController {
             String ShanghuCode=request.getParameter("ShanghuCode");
         	tAccountSingleAmount.setAmountType("1");
     		tAccountSingleAmount.setShanghuCode(ShanghuCode);
-    		Page<TAccountSingleAmount> page = tAccountSingleAmountService.findPage(new Page<TAccountSingleAmount>(request, response,-1), tAccountSingleAmount); 
-    		new ExportExcel("闪客蜂预售票账务汇总", TAccountSingleAmount.class).setDataList(page.getList()).write(response, fileName).dispose();
+    		List<TAccountSingleAmount> page = tAccountSingleAmountService.findPage1(new Page<TAccountSingleAmount>(request, response,-1), tAccountSingleAmount); 
+    		new ExportExcel("闪客蜂预售票账务汇总", TAccountSingleAmount.class).setDataList(page).write(response, fileName).dispose();
     		return null;
 		} catch (Exception e) {
 			e.printStackTrace();

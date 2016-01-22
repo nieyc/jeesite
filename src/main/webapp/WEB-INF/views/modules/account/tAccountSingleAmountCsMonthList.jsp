@@ -56,6 +56,7 @@ $(document).ready(function(){
 				if(v=="ok"){
 					$("#searchForm").attr("action","${ctx}/account/tAccountSingleAmount/exportMonth?ShanghuCode=4100");
 					$("#searchForm").submit();
+					$("#searchForm").attr("action","${ctx}/account/tAccountSingleAmount/getCsMonth");
 				}
 			},{buttonsFocus:1});
 			top.$('.jbox-body .jbox-icon').css('top','55px');
@@ -66,6 +67,7 @@ $(document).ready(function(){
 				if(v=="ok"){
 					$("#searchForm").attr("action","${ctx}/account/tAccountSingleAmount/exportDay?day="+day+"&ShanghuCode=4100");
 					$("#searchForm").submit();
+					$("#searchForm").attr("action","${ctx}/account/tAccountSingleAmount/getCsMonth");
 				}
 			},{buttonsFocus:1});
 			top.$('.jbox-body .jbox-icon').css('top','55px');

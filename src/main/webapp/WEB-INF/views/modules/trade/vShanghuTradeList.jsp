@@ -25,6 +25,22 @@
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
 		<ul class="ul-form">
+		
+			<li><label>create_time：</label>
+				<input name="beginCreateTime" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
+					value="<fmt:formatDate value="${vShanghuTrade1.beginCreateTime}" pattern="yyyy-MM-dd HH:mm:ss"/>"
+					onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/> - 
+				<input name="endCreateTime" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
+					value="<fmt:formatDate value="${vShanghuTrade1.endCreateTime}" pattern="yyyy-MM-dd HH:mm:ss"/>"
+					onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
+			</li>
+			<li><label>deal_type：</label>
+				<form:select path="dealType" class="input-medium">
+					<form:option value="" label=""/>
+					<form:options items="${fns:getDictList('account_type')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
+				</form:select>
+			</li>
+			
 			<li><label>姓名：</label>
 				<form:input path="realName" htmlEscape="false" maxlength="100" class="input-medium"/>
 			</li>
