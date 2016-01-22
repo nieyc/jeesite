@@ -149,7 +149,7 @@ $(document).ready(function(){
 	  </tr>
 	  <tr>
 	    <td colspan="4" class="td1">地铁充值</td>
-	    <td rowspan="2" class="td2">退款 ${tAccountSingleAmount.refundAmount}    <em>${tAccountSingleAmount.refundDealAmount} </em></td>
+	    <td rowspan="2" class="td2">退款 ${tAccountSingleAmount.refundAmount}    <em>${tAccountSingleAmount.refundDealAmount} 笔</em></td>
 	  </tr>
 	  <tr>
 	    <td>支付宝    <em></em></td>

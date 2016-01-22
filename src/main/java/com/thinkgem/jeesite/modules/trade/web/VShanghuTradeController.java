@@ -41,6 +41,7 @@ import com.thinkgem.jeesite.modules.trade.service.VShanghuTradeService;
 public class VShanghuTradeController extends BaseController {
 
 	private SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+	private SimpleDateFormat sdf1=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	@Autowired
 	private VShanghuTradeService vShanghuTradeService;
 	
@@ -225,12 +226,13 @@ public class VShanghuTradeController extends BaseController {
 			String extOrderNo=request.getParameter("extOrderNo");
             String fileName = "闪客蜂业务明细查询"+DateUtils.getDate("yyyyMMddHHmmss")+".xlsx";
             vShanghuTrade.setShanghu(shanghu);
+           
             if(StringUtils.isNotEmpty(beginCreateTime)){
-            	  Date biginDay=sdf.parse(beginCreateTime);
+            	  Date biginDay=sdf1.parse(beginCreateTime);
             	  vShanghuTrade.setBeginCreateTime(biginDay);
             }
             if(StringUtils.isNotEmpty(endCreateTime)){
-          	  Date endDay=sdf.parse(endCreateTime);
+          	  Date endDay=sdf1.parse(endCreateTime);
           	  vShanghuTrade.setEndCreateTime(endDay);
              }
             vShanghuTrade.setDealType(dealType);
