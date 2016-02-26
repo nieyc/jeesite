@@ -124,7 +124,7 @@
 				</td>
 				<td>
 					<%--  ${vShanghuTrade.shanghu}--%>
-					 <c:if test="${vShanghuTrade.shanghu=='00'}">充卡</c:if> 
+					 <c:if test="${vShanghuTrade.shanghu=='00'}">长沙地铁充值</c:if> 
 					 <c:if test="${vShanghuTrade.shanghu=='01'}">单程票</c:if> 
 					
 				</td>
