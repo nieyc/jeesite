@@ -91,15 +91,16 @@
 	<table id="contentTable" class="table table-striped table-bordered table-condensed">
 		<thead>
 			<tr>
-			    <th>姓名</th>
-			    <th>手机号码</th>
-				<th>商户</th>
-				<th>账户类型</th>
-				<th>订单编号</th>
-				<th>交易金额</th>
-				<th>支付通道  </th>
-				<th>交易类型</th>
-				<th>创建日期</th>
+			   
+			    <th>交易时间</th>
+			    <th>订单编号</th>
+			    <th>账户类型</th>
+			    <th>商品</th>
+			    <th>交易金额</th>
+			    <th>支付通道  </th>
+			    <th>交易类型</th>
+			    <th>客户手机号</th>
+			    <th>客户姓名</th>
 				
 				<%-- <shiro:hasPermission name="trade:vShanghuTrade:edit"><th>操作</th></shiro:hasPermission> --%>
 			</tr>
@@ -108,20 +109,13 @@
 		<c:forEach items="${page.list}" var="vShanghuTrade">
 			<tr>
 				
+				<td>
+					<fmt:formatDate value="${vShanghuTrade.createTime}" pattern="yyyy-MM-dd HH:mm:ss"/>
+				</td>
+				<td>
+					${vShanghuTrade.extOrderNo}
+				</td>
 				
-				<td>
-					${vShanghuTrade.realName}
-				</td>
-				<td>
-					${vShanghuTrade.userMobile}
-				</td>
-				
-				<td>
-					<%--  ${vShanghuTrade.shanghu}--%>
-					 <c:if test="${vShanghuTrade.shanghu=='00'}">充卡</c:if> 
-					 <c:if test="${vShanghuTrade.shanghu=='01'}">单程票</c:if> 
-					
-				</td>
 				<td>
 					<%-- ${vShanghuTrade.dealType} --%>
 					<c:if test="${vShanghuTrade.dealType=='1'}">交易</c:if> 
@@ -129,7 +123,10 @@
 					 <c:if test="${vShanghuTrade.dealType=='3'}">出票</c:if> 
 				</td>
 				<td>
-					${vShanghuTrade.extOrderNo}
+					<%--  ${vShanghuTrade.shanghu}--%>
+					 <c:if test="${vShanghuTrade.shanghu=='00'}">充卡</c:if> 
+					 <c:if test="${vShanghuTrade.shanghu=='01'}">单程票</c:if> 
+					
 				</td>
 				<td>
 					${vShanghuTrade.cashAmount}
@@ -149,8 +146,20 @@
 					 <c:if test="${vShanghuTrade.scoreType=='1'}">扫码</c:if> 
 				</td>
 				<td>
-					<fmt:formatDate value="${vShanghuTrade.createTime}" pattern="yyyy-MM-dd HH:mm:ss"/>
+					${vShanghuTrade.userMobile}
 				</td>
+				<td>
+					${vShanghuTrade.realName}
+				</td>
+				
+				
+				
+				
+				
+				
+				
+				
+				
 				
 				<%-- <shiro:hasPermission name="trade:vShanghuTrade:edit"><td>
     				<a href="${ctx}/trade/vShanghuTrade/form?id=${vShanghuTrade.id}">修改</a>

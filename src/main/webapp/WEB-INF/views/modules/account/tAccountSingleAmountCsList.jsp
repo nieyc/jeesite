@@ -126,7 +126,7 @@ $(document).ready(function(){
 	<div class="menu">
 	<table class="table" width="640" border="1" cellspacing="0" cellpadding="0" bordercolor="#cccccc">
 	  <tr>
-	    <td colspan="4" class="td1">单程票（已出票）</td>
+	    <td colspan="4" class="td1">单程票（预售）</td>
 	    <td rowspan="2" class="td2">出票-${tAccountSingleAmount.ticketsAmount} <em>${tAccountSingleAmount.ticketsDealAmount}笔</em></td>
 	  </tr>
 	  <tr>
