@@ -73,7 +73,7 @@ public class TAccountSingleAmountController extends BaseController {
 	@RequestMapping(value = {"getGzDay", ""})
 	public String list(TAccountSingleAmount tAccountSingleAmount, HttpServletRequest request, HttpServletResponse response, Model model) {
 		tAccountSingleAmount.setAmountType("1");
-		tAccountSingleAmount.setShanghuCode("4401");
+		tAccountSingleAmount.setShanghuCode("510000001");
 		Page<TAccountSingleAmount> page = tAccountSingleAmountService.findPage(new Page<TAccountSingleAmount>(request, response), tAccountSingleAmount); 
 		model.addAttribute("page", page);
 		return "modules/account/tAccountSingleAmountGzList";
@@ -95,7 +95,7 @@ public class TAccountSingleAmountController extends BaseController {
     @RequestMapping(value = {"getGzMonth", ""})
 	public String Month(TAccountSingleAmount tAccountSingleAmount, HttpServletRequest request, HttpServletResponse response, Model model) {
 		tAccountSingleAmount.setAmountType("2");
-		tAccountSingleAmount.setShanghuCode("4401");
+		tAccountSingleAmount.setShanghuCode("510000001");
 		Page<TAccountSingleAmount> page = tAccountSingleAmountService.findPage(new Page<TAccountSingleAmount>(request, response), tAccountSingleAmount); 
 		model.addAttribute("page", page);
 		return "modules/account/tAccountSingleAmountGzMonthList";
@@ -117,7 +117,7 @@ public class TAccountSingleAmountController extends BaseController {
 	@RequestMapping(value = {"getCsDay", ""})
 	public String getCslist(TAccountSingleAmount tAccountSingleAmount, HttpServletRequest request, HttpServletResponse response, Model model) {
 		tAccountSingleAmount.setAmountType("1");
-		tAccountSingleAmount.setShanghuCode("4100");
+		tAccountSingleAmount.setShanghuCode("410000001");
 		Page<TAccountSingleAmount> page = tAccountSingleAmountService.findPage(new Page<TAccountSingleAmount>(request, response), tAccountSingleAmount); 
 		model.addAttribute("page", page);
 		return "modules/account/tAccountSingleAmountCsList";
@@ -138,7 +138,7 @@ public class TAccountSingleAmountController extends BaseController {
     @RequestMapping(value = {"getCsMonth", ""})
 	public String getCsMonth(TAccountSingleAmount tAccountSingleAmount, HttpServletRequest request, HttpServletResponse response, Model model) {
 		tAccountSingleAmount.setAmountType("2");
-		tAccountSingleAmount.setShanghuCode("4100");
+		tAccountSingleAmount.setShanghuCode("410000001");
 		Page<TAccountSingleAmount> page = tAccountSingleAmountService.findPage(new Page<TAccountSingleAmount>(request, response), tAccountSingleAmount); 
 		model.addAttribute("page", page);
 		return "modules/account/tAccountSingleAmountCsMonthList";

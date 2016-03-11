@@ -27,7 +27,7 @@
 						var realName=document.getElementById("realName").value;
 						var userMobile=document.getElementById("userMobile").value;
 						var extOrderNo=document.getElementById("extOrderNo").value;
-						$("#searchForm").attr("action","${ctx}/trade/vShanghuTrade/exportDeail?shanghu=00&beginCreateTime="+beginDate+"&endCreateTime="+endDate+"&dealType="+dealType+"&realName="+realName+"&userMobile="+userMobile+"&extOrderNo="+extOrderNo+"");
+						$("#searchForm").attr("action","${ctx}/trade/vShanghuTrade/exportDeail?shanghu=410000001&beginCreateTime="+beginDate+"&endCreateTime="+endDate+"&dealType="+dealType+"&realName="+realName+"&userMobile="+userMobile+"&extOrderNo="+extOrderNo+"");
 						$("#searchForm").submit();
 						$("#searchForm").attr("action","${ctx}/trade/vShanghuTrade/gzlist");
 					}
@@ -126,6 +126,8 @@
 					<%--  ${vShanghuTrade.shanghu}--%>
 					 <c:if test="${vShanghuTrade.shanghu=='00'}">长沙地铁充值</c:if> 
 					 <c:if test="${vShanghuTrade.shanghu=='01'}">单程票</c:if> 
+					 <c:if test="${vShanghuTrade.shanghu=='03'}">移动充值活动</c:if> 
+					 <c:if test="${vShanghuTrade.shanghu=='04'}">手环充值</c:if> 
 					
 				</td>
 				<td>
@@ -139,6 +141,7 @@
 					<c:if test="${vShanghuTrade.payWay=='2'}">支付宝扫码</c:if> 
 					<c:if test="${vShanghuTrade.payWay=='3'}">微信支付</c:if> 
 					<c:if test="${vShanghuTrade.payWay=='4'}">微信扫码</c:if> 
+					<c:if test="${vShanghuTrade.payWay=='5'}">翼支付</c:if> 
 				</td>
 				<td>
 					<%-- ${vShanghuTrade.scoreType} --%>

@@ -5,6 +5,7 @@
 	<sql id="vShanghuTradeColumns">
 		a.create_time AS "createTime",
 		a.shanghu AS "shanghu",
+		a.partner_no AS "partnerNo",
 		a.deal_type AS "dealType",
 		a.ext_order_no AS "extOrderNo",
 		a.cash_amount AS "cashAmount",
@@ -32,15 +33,19 @@
 	</select>
 	
 	<select id="getVShanghuTradeList" resultType="VShanghuTrade">
-		SELECT a.CREATE_TIME,case a.SHANGHU when '01' then '广州地铁' when '00' then '长沙地铁' END  as SHANGHU ,a.CREATE_TIME ,
-case a.DEAL_TYPE when '1' then '交易' when '2' then '退款' when '3' then '出票' END as DEAL_TYPE,a.EXT_ORDER_NO,
-case a.PAY_WAY when '1037' then '盘缠支付' when '0' then '支付宝支付' when '1' then '中移动支付' when '2' then '支付宝扫码' when '3' then '微信支付' when '4' then '微信扫码'
-end as PAY_WAY,a.CASH_AMOUNT,case a.SHANGHU when '01' then '单程票' when '00' then '充卡' END  as PRODUCT,
-a.REAL_NAME,a.USER_MOBILE,case a.SCORE_TYPE  when '0' then 'APP' when '1' then '扫描' END as SCORE_TYPE  FROM v_shanghu_trade a
+SELECT a.CREATE_TIME,case a.PARTNER_NO when '510000001' then '广州地铁' when '410000001' then '长沙地铁' when '300000001' then '天津地铁' when '200000001' then '上海地铁' when '100000001' then '北京地铁' END as SHANGHU ,
+a.CREATE_TIME , case a.DEAL_TYPE when '1' then '交易' when '2' then '退款' when '3' then '出票' END as DEAL_TYPE,a.EXT_ORDER_NO, 
+case a.PAY_WAY when '1037' then '盘缠支付' when '0' then '支付宝支付' when '1' then '中移动支付' when '2' then '支付宝扫码' when '3' then '微信支付' 
+when '4' then '微信扫码' when '5' then '翼支付' end as PAY_WAY,a.CASH_AMOUNT,case a.SHANGHU when '01' then '单程票' when '00' then '充卡'  when '03' then '移动充值'  when '04' then '手环充值' END 
+as PRODUCT, a.REAL_NAME,a.USER_MOBILE,case a.SCORE_TYPE when '0' then 'APP' when '1' then '扫描' END as SCORE_TYPE FROM 
+v_shanghu_trade a
 		<include refid="vShanghuTradeJoins"/>
 		<where>
 			<if test="shanghu != null and shanghu != ''">
 				AND a.shanghu = #{shanghu}
+			</if>
+			<if test="partnerNo != null and partnerNo != ''">
+				AND a.partner_no = #{partnerNo}
 			</if>
 			<if test="realName != null and realName != ''">
 				AND a.real_name = #{realName}
@@ -82,6 +87,10 @@ a.REAL_NAME,a.USER_MOBILE,case a.SCORE_TYPE  when '0' then 'APP' when '1' then '
 			</if>
 			<if test="shanghu != null and shanghu != ''">
 				AND a.shanghu = #{shanghu}
+			</if>
+			
+			<if test="partnerNo != null and partnerNo != ''">
+				AND a.partner_no = #{partnerNo}
 			</if>
 			
 			<if test="extOrderNo != null and extOrderNo != ''">

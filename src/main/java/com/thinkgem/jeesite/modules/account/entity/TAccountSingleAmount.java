@@ -43,7 +43,38 @@ public class TAccountSingleAmount extends DataEntity<TAccountSingleAmount> {
 	private String amountType;		// 账务类型，1为日统计，2为月统计
 	private String shanghuCode;		// 商户编码
 	private String shanghuName;		// 商户名称
+	private String yiAmount;
+	private String yiDealAmount;
 	
+	/**
+	 * @return yiAmount
+	 */
+	public String getYiAmount() {
+		return yiAmount;
+	}
+
+	/**
+	 * @param yiAmount
+	 */
+	public void setYiAmount(String yiAmount) {
+		this.yiAmount = yiAmount;
+	}
+
+	/**
+	 * @return yiDealAmount
+	 */
+	@ExcelField(title="翼支付总额", align=2, sort=65)
+	public String getYiDealAmount() {
+		return yiDealAmount;
+	}
+
+	/**
+	 * @param yiDealAmount
+	 */
+	public void setYiDealAmount(String yiDealAmount) {
+		this.yiDealAmount = yiDealAmount;
+	}
+
 	public TAccountSingleAmount() {
 		super();
 	}

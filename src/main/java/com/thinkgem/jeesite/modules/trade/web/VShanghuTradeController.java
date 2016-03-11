@@ -88,7 +88,8 @@ public class VShanghuTradeController extends BaseController {
 	@RequiresPermissions("trade:vShanghuTrade:view")
 	@RequestMapping(value = {"gzlist", ""})
 	public String gzlist(VShanghuTrade vShanghuTrade, HttpServletRequest request, HttpServletResponse response, Model model) {
-		vShanghuTrade.setShanghu("01");
+		//vShanghuTrade.setShanghu("01");
+		vShanghuTrade.setPartnerNo("510000001");
 		
 		Page<VShanghuTrade> page = vShanghuTradeService.findPage(new Page<VShanghuTrade>(request, response), vShanghuTrade); 
 		model.addAttribute("page", page);
@@ -111,7 +112,8 @@ public class VShanghuTradeController extends BaseController {
 	@RequiresPermissions("trade:vShanghuTrade:view")
 	@RequestMapping(value = {"cslist", ""})
 	public String cslist(VShanghuTrade vShanghuTrade, HttpServletRequest request, HttpServletResponse response, Model model) {
-		vShanghuTrade.setShanghu("00");
+		//vShanghuTrade.setShanghu("00");
+		vShanghuTrade.setPartnerNo("410000001");
 		Page<VShanghuTrade> page = vShanghuTradeService.findPage(new Page<VShanghuTrade>(request, response), vShanghuTrade); 
 		model.addAttribute("page", page);
 		request.setAttribute("vShanghuTrade", vShanghuTrade);
@@ -164,7 +166,7 @@ public class VShanghuTradeController extends BaseController {
 			String day=request.getParameter("day");
 			String shanghu=request.getParameter("shanghu");
             String fileName = "闪客蜂业务明细查询"+DateUtils.getDate("yyyyMMddHHmmss")+".xlsx";
-            vShanghuTrade.setShanghu(shanghu);
+            vShanghuTrade.setPartnerNo(shanghu);
             Date day1=sdf.parse(day);
             vShanghuTrade.setCreateTime(day1);
             List<VShanghuTrade> page = vShanghuTradeService.findPage1(new Page<VShanghuTrade>(request, response,-1), vShanghuTrade); 
@@ -196,7 +198,8 @@ public class VShanghuTradeController extends BaseController {
 		try {
 			String day=request.getParameter("day");
             String fileName = "闪客蜂业务明细查询"+DateUtils.getDate("yyyyMMddHHmmss")+".xlsx";
-            vShanghuTrade.setShanghu("00");
+            //vShanghuTrade.setShanghu("00");
+            vShanghuTrade.setPartnerNo("410000001");
             Date day1=sdf.parse(day);
             vShanghuTrade.setCreateTime(day1);
             List<VShanghuTrade> page = vShanghuTradeService.findPage1(new Page<VShanghuTrade>(request, response,-1), vShanghuTrade); 
@@ -217,7 +220,7 @@ public class VShanghuTradeController extends BaseController {
     @RequestMapping(value = "exportDeail", method=RequestMethod.POST)
     public String exportDeail(VShanghuTrade vShanghuTrade, HttpServletRequest request, HttpServletResponse response, RedirectAttributes redirectAttributes) {
 		try {
-			String shanghu=request.getParameter("shanghu");
+			String partnerNo=request.getParameter("partnerNo");
 			String beginCreateTime=request.getParameter("beginCreateTime");
 			String endCreateTime=request.getParameter("endCreateTime");
 			String dealType=request.getParameter("dealType");
@@ -225,7 +228,7 @@ public class VShanghuTradeController extends BaseController {
 			String userMobile=request.getParameter("userMobile");
 			String extOrderNo=request.getParameter("extOrderNo");
             String fileName = "闪客蜂业务明细查询"+DateUtils.getDate("yyyyMMddHHmmss")+".xlsx";
-            vShanghuTrade.setShanghu(shanghu);
+            vShanghuTrade.setPartnerNo(partnerNo);
            
             if(StringUtils.isNotEmpty(beginCreateTime)){
             	  Date biginDay=sdf1.parse(beginCreateTime);

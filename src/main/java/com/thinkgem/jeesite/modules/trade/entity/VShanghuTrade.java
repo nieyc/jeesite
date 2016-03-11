@@ -24,6 +24,21 @@ public class VShanghuTrade extends DataEntity<VShanghuTrade> {
 	private static final long serialVersionUID = 1L;
 	private Date createTime;		// create_time
 	private String shanghu;		// shanghu
+	private String partnerNo;
+	/**
+	 * @return partnerNo
+	 */
+	public String getPartnerNo() {
+		return partnerNo;
+	}
+
+	/**
+	 * @param partnerNo
+	 */
+	public void setPartnerNo(String partnerNo) {
+		this.partnerNo = partnerNo;
+	}
+
 	private String dealType;		// deal_type
 	private String extOrderNo;		// ext_order_no
 	private String cashAmount;		// cash_amount

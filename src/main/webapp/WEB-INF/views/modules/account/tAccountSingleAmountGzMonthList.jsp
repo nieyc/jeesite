@@ -54,7 +54,7 @@ $(document).ready(function(){
 		function uploadAll(){
 			top.$.jBox.confirm("确认要导出预售票账务汇总数据吗？","系统提示",function(v,h,f){
 				if(v=="ok"){
-					$("#searchForm").attr("action","${ctx}/account/tAccountSingleAmount/exportMonth?ShanghuCode=4401");
+					$("#searchForm").attr("action","${ctx}/account/tAccountSingleAmount/exportMonth?ShanghuCode=510000001");
 					$("#searchForm").submit();
 					$("#searchForm").attr("action","${ctx}/account/tAccountSingleAmount/getGzMonth");
 				}
@@ -65,7 +65,7 @@ $(document).ready(function(){
 		function upload(day){
 			top.$.jBox.confirm("确认要下载'"+day+"'账单吗？","系统提示",function(v,h,f){
 				if(v=="ok"){
-					$("#searchForm").attr("action","${ctx}/account/tAccountSingleAmount/exportDay?day="+day+"&ShanghuCode=4401");
+					$("#searchForm").attr("action","${ctx}/account/tAccountSingleAmount/exportDay?day="+day+"&ShanghuCode=510000001");
 					$("#searchForm").submit();
 					$("#searchForm").attr("action","${ctx}/account/tAccountSingleAmount/getGzMonth");
 				}
@@ -138,7 +138,7 @@ $(document).ready(function(){
 	<div class="menu">
 	<table class="table" width="640" border="1" cellspacing="0" cellpadding="0" bordercolor="#cccccc">
 	  <tr>
-	    <td colspan="4" class="td1">单程票（预售）</td>
+	    <td colspan="5" class="td1">单程票（预售）</td>
 	    <td rowspan="2" class="td2">出票-${tAccountSingleAmount.ticketsAmount} <em>${tAccountSingleAmount.ticketsDealAmount}笔</em></td>
 	  </tr>
 	  <tr>
@@ -146,9 +146,10 @@ $(document).ready(function(){
 	    <td>微信 ${tAccountSingleAmount.wechatAmount}    <em> ${tAccountSingleAmount.wechatDealAmount}笔</em></td>
 	    <td>盘缠${tAccountSingleAmount.panchanAmount}    <em>${tAccountSingleAmount.panchanDealAmount}笔</em></td>
 	    <td>中移动${tAccountSingleAmount.cmccAmount} <em> ${tAccountSingleAmount.cmccDealAmount}笔</em></td>
+	    <td>翼支付${tAccountSingleAmount.yiAmount} <em> ${tAccountSingleAmount.yiDealAmount}笔</em></td>
 	  </tr>
 	  <tr>
-	    <td colspan="4" class="td1">地铁充值</td>
+	    <td colspan="5" class="td1">地铁充值</td>
 	    <td rowspan="2" class="td2">退款 ${tAccountSingleAmount.refundAmount}    <em>${tAccountSingleAmount.refundDealAmount} 笔</em></td>
 	  </tr>
 	  <tr>
@@ -156,6 +157,7 @@ $(document).ready(function(){
 	    <td>微信    <em> </em></td>
 	    <td>盘缠    <em> </em></td>
 	    <td>中移动  <em> </em></td>
+	    <td>翼支付  <em> </em></td>
 	  </tr>
 	</table>
 	</div>

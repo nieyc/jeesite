@@ -26,7 +26,9 @@
 		a.create_time AS "createTime",
 		a.amount_type AS "amountType",
 		a.shanghu_code AS "shanghuCode",
-		a.shanghu_name AS "shanghuName"
+		a.shanghu_name AS "shanghuName",
+		a.yi_amount AS "yiAmount",
+		a.yi_deal_amount AS "yiDealAmount"
 	</sql>
 	
 	<sql id="tAccountSingleAmountJoins">
